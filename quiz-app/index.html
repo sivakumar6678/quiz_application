@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz App</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container text-center mt-5">
+    <!-- Home Page -->
+    <div id="home-page">
+      <h1>Welcome to the Quiz App!</h1>
+      <button class="btn btn-primary btn-lg" onclick="startQuiz()">Start Quiz</button>
+    </div>
+
+    <!-- Quiz Page -->
+    <div id="quiz-page" class="d-none">
+      <h2 id="question"></h2>
+      <div id="options" class="my-4"></div>
+      <button id="next-btn" class="btn btn-secondary d-none" onclick="nextQuestion()">Next</button>
+      <div class="mt-4">
+        <span id="progress"></span>
+        <span id="timer" class="badge bg-danger ms-3"></span>
+      </div>
+    </div>
+
+    <!-- Result Page -->
+    <div id="result-page" class="d-none">
+      <h2>Quiz Completed!</h2>
+      <h3 id="score"></h3>
+      <button class="btn btn-primary" onclick="restartQuiz()">Restart Quiz</button>
+    </div>
+  </div>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Audio for Sound Effects -->
+  <audio id="correct-sound" src="correct.mp3"></audio>
+  <audio id="wrong-sound" src="wrong.mp3"></audio>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
