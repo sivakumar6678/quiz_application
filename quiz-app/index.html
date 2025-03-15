@@ -7,21 +7,43 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="light-mode">
   <div class="container text-center mt-5">
     <!-- Home Page -->
     <div id="home-page">
       <h1>Welcome to the Quiz App!</h1>
+      <div class="mb-4">
+        <label for="category">Choose Category:</label>
+        <select id="category" class="form-select">
+          <option value="9">General Knowledge</option>
+          <option value="17">Science</option>
+          <option value="11">Movies</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label for="difficulty">Choose Difficulty:</label>
+        <select id="difficulty" class="form-select">
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label for="quiz-length">Number of Questions:</label>
+        <input type="number" id="quiz-length" class="form-control" min="1" max="20" value="10">
+      </div>
       <button class="btn btn-primary btn-lg" onclick="startQuiz()">Start Quiz</button>
+      <button class="btn btn-secondary btn-lg ms-3" onclick="toggleDarkMode()">Toggle Dark Mode</button>
     </div>
 
     <!-- Quiz Page -->
     <div id="quiz-page" class="d-none">
-      <h2 id="question"></h2>
+      <h2 id="question" class="mb-4"></h2>
       <div id="options" class="my-4"></div>
+      <button id="hint-btn" class="btn btn-warning mb-3" onclick="useHint()">Hint (50-50)</button>
       <button id="next-btn" class="btn btn-secondary d-none" onclick="nextQuestion()">Next</button>
       <div class="mt-4">
-        <span id="progress"></span>
+        <span id="progress" class="badge bg-primary"></span>
         <span id="timer" class="badge bg-danger ms-3"></span>
       </div>
     </div>
@@ -29,8 +51,11 @@
     <!-- Result Page -->
     <div id="result-page" class="d-none">
       <h2>Quiz Completed!</h2>
-      <h3 id="score"></h3>
+      <h3 id="score" class="mb-4"></h3>
+      <div id="badges" class="my-4"></div>
       <button class="btn btn-primary" onclick="restartQuiz()">Restart Quiz</button>
+      <button class="btn btn-success ms-3" onclick="shareResults()">Share Results</button>
+      <div id="review" class="mt-4 text-start"></div>
     </div>
   </div>
 

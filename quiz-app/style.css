@@ -1,6 +1,13 @@
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f8f9fa;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  body.dark-mode {
+    background-color: #333;
+    color: #f8f9fa;
   }
   
   #confetti-canvas {
@@ -15,6 +22,17 @@ body {
   #quiz-page, #result-page {
     max-width: 600px;
     margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  body.dark-mode #quiz-page,
+  body.dark-mode #result-page {
+    background-color: #444;
+    color: #f8f9fa;
   }
   
   #options button {
@@ -23,8 +41,42 @@ body {
     margin: 10px 0;
     padding: 10px;
     font-size: 18px;
+    text-align: left;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+  #options button:hover {
+    background-color: #f1f1f1;
+  }
+  
+  body.dark-mode #options button {
+    border-color: #555;
+    background-color: #444;
+    color: #f8f9fa;
+  }
+  
+  body.dark-mode #options button:hover {
+    background-color: #555;
   }
   
   #timer {
     font-size: 20px;
+  }
+  
+  .badge {
+    font-size: 16px;
+  }
+  
+  #review div {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+  }
+  
+  body.dark-mode #review div {
+    background-color: #555;
+    color: #f8f9fa;
   }
