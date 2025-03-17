@@ -9,6 +9,7 @@
 </head>
 <body class="light-mode">
   <div class="container text-center mt-5">
+    
     <!-- Home Page -->
     <div id="home-page">
       <h1>Welcome to the Quiz App!</h1>
@@ -34,6 +35,7 @@
       </div>
       <button class="btn btn-primary btn-lg" onclick="startQuiz()">Start Quiz</button>
       <button class="btn btn-secondary btn-lg ms-3" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+      <button id="sound-toggle" class="btn btn-info btn-lg ms-3" onclick="toggleSound()">Sound: ON</button>
     </div>
 
     <!-- Quiz Page -->
@@ -56,6 +58,12 @@
       <button class="btn btn-primary" onclick="restartQuiz()">Restart Quiz</button>
       <button class="btn btn-success ms-3" onclick="shareResults()">Share Results</button>
       <div id="review" class="mt-4 text-start"></div>
+    </div>
+
+    <!-- Leaderboard Page -->
+    <div id="leaderboard-page" class="mt-5">
+      <h2>Leaderboard</h2>
+      <ul id="leaderboard" class="list-group"></ul>
     </div>
   </div>
 
