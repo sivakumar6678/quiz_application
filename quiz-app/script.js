@@ -4,6 +4,7 @@ let score = 0;
 let timeLeft = 10;
 let timer;
 let hintsUsed = 0;
+let userAnswers = []; // Store user's answers for review
 
 const homePage = document.getElementById("home-page");
 const quizPage = document.getElementById("quiz-page");
@@ -18,6 +19,7 @@ const correctSound = document.getElementById("correct-sound");
 const wrongSound = document.getElementById("wrong-sound");
 const badgesElement = document.getElementById("badges");
 const reviewElement = document.getElementById("review");
+const hintButton = document.getElementById("hint-btn");
 
 async function startQuiz() {
   const category = document.getElementById("category").value;
@@ -35,6 +37,7 @@ async function startQuiz() {
 
   homePage.classList.add("d-none");
   quizPage.classList.remove("d-none");
+  userAnswers = []; // Reset user answers
   loadQuestion();
   startTimer();
 }
@@ -51,16 +54,19 @@ function loadQuestion() {
     optionsElement.appendChild(button);
   });
   progressElement.textContent = `Question ${currentQuestionIndex + 1} of ${quizQuestions.length}`;
+  hintButton.disabled = hintsUsed >= 1; // Disable hint if already used
 }
 
 function checkAnswer(selectedOption) {
   const currentQuestion = quizQuestions[currentQuestionIndex];
+  userAnswers[currentQuestionIndex] = selectedOption; // Store user's answer
+
   optionsElement.querySelectorAll("button").forEach(button => {
     button.disabled = true; // Disable all buttons after selection
     if (button.textContent === currentQuestion.answer) {
-      button.classList.add("btn-success");
+      button.classList.add("btn-success"); // Correct answer in green
     } else if (button.textContent === selectedOption) {
-      button.classList.add("btn-danger");
+      button.classList.add("btn-danger"); // Selected wrong answer in red
     }
   });
 
@@ -98,7 +104,8 @@ function startTimer() {
     timerElement.textContent = `Time Left: ${timeLeft}s`;
     if (timeLeft <= 0) {
       clearInterval(timer);
-      checkAnswer(null);
+      checkAnswer(null); // Automatically check answer when time runs out
+      setTimeout(() => nextQuestion(), 2000); // Move to next question after 2 seconds
     }
   }, 1000);
 }
@@ -122,7 +129,15 @@ function awardBadges() {
 function showReview() {
   quizQuestions.forEach((q, index) => {
     const div = document.createElement("div");
-    div.innerHTML = `<strong>Q${index + 1}:</strong> ${q.question} - <span class="text-success">${q.answer}</span>`;
+    const userAnswer = userAnswers[index];
+    const isCorrect = userAnswer === q.answer;
+    div.innerHTML = `
+      <strong>Q${index + 1}:</strong> ${q.question} 
+      <br> 
+      <span class="${isCorrect ? "text-success" : "text-danger"}">Your Answer: ${userAnswer || "No answer"}</span>
+      <br>
+      <span class="text-success">Correct Answer: ${q.answer}</span>
+    `;
     reviewElement.appendChild(div);
   });
 }
@@ -138,6 +153,7 @@ function useHint() {
       }
     });
     hintsUsed++;
+    hintButton.disabled = true; // Disable hint button after use
   }
 }
 
